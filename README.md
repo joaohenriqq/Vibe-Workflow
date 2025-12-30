@@ -2,6 +2,8 @@
 
 **Open-Weavy** is an open-source alternative to [Weavy.ai](https://weavy.ai) (acquired by Figma), designed to empower creators with "Artistic Intelligence". It features a node-based workflow editor for designing, editing, and composing AI-generated content with professional precision.
 
+<img width="1536" height="1024" alt="ow" src="https://github.com/user-attachments/assets/a11ff6c1-83bf-4c09-ac58-03ccffffd84c" />
+
 ## Features
 
 - **Node-Based Workflows**: Modular, reusable pipelines for generative AI (similar to Blender or ComfyUI).
