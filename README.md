@@ -2,7 +2,7 @@
 
 **Vibe Workflow** is an open-source alternative to [Weavy.ai](https://weavy.ai), **FloraFauna**, **Freepik Spaces**, and **Krea Workflows**. Designed to empower creators with "Artistic Intelligence," it features a node-based workflow editor for designing, editing, and composing AI-generated content with professional precision.
 
-<img width="1536" height="1024" alt="vw" src="https://github.com/user-attachments/assets/a11ff6c1-83bf-4c09-ac58-03ccffffd84c" />
+<img width="1024" height="1024" alt="vw" src="https://github.com/user-attachments/assets/f603eb13-3b4f-4c9a-9a6a-c4cc3a94f7a6" />
 
 ## Why Vibe Workflow?
 
