@@ -3,10 +3,10 @@
 # Stage 1: Base image
 FROM node:24-alpine AS base
 WORKDIR /app
-ENV NODE_ENV=production
 
-# Stage 2: Install dependencies
+# Stage 2: Install dependencies (dev included for build)
 FROM base AS deps
+ENV NODE_ENV=development
 COPY package.json package-lock.json ./
 COPY client/package.json ./client/
 COPY packages/workflow-builder/package.json ./packages/workflow-builder/
@@ -16,6 +16,7 @@ RUN npm install
 FROM deps AS builder-lib
 COPY packages/workflow-builder ./packages/workflow-builder
 WORKDIR /app/packages/workflow-builder
+RUN npm install
 RUN npm run build
 
 # Stage 4: Build Next.js app
@@ -29,11 +30,12 @@ RUN npm run build
 
 # Stage 5: Production runtime
 FROM base AS production
+ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 COPY --from=builder --chown=nextjs:nodejs /app/client/.next/standalone ./
-COPY --from=builder /app/client/public ./client/public
+COPY --from=builder --chown=nextjs:nodejs /app/client/public ./client/public
 COPY --from=builder --chown=nextjs:nodejs /app/client/.next/static ./client/.next/static
 
 USER nextjs
