@@ -6,8 +6,8 @@ services:
       args:
         API_URL: http://server:8000
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       NODE_ENV: production
       API_URL: http://server:8000
@@ -28,8 +28,8 @@ services:
       context: ./server
       dockerfile: Dockerfile
     restart: unless-stopped
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     environment:
       MU_API_KEY: ${MU_API_KEY}
     healthcheck:
