@@ -10,7 +10,7 @@ FROM base AS deps
 COPY package.json package-lock.json ./
 COPY client/package.json ./client/
 COPY packages/workflow-builder/package.json ./packages/workflow-builder/
-RUN npm ci --include=dev
+RUN npm install
 
 # Stage 3: Build shared package
 FROM deps AS builder-lib
