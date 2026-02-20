@@ -4,7 +4,7 @@
 FROM node:24-alpine AS base
 WORKDIR /app
 
-# Stage 2: Install dependencies (dev included for build)
+# Stage 2: Install dependencies
 FROM base AS deps
 ENV NODE_ENV=development
 COPY package.json package-lock.json ./
@@ -15,8 +15,8 @@ RUN npm install
 # Stage 3: Build shared package
 FROM deps AS builder-lib
 COPY packages/workflow-builder ./packages/workflow-builder
+ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app/packages/workflow-builder
-RUN npm install
 RUN npm run build
 
 # Stage 4: Build Next.js app
@@ -25,6 +25,7 @@ COPY --from=builder-lib /app/packages/workflow-builder/dist ./packages/workflow-
 COPY client ./client
 ARG API_URL=http://server:8000
 ENV API_URL=${API_URL}
+ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app/client
 RUN npm run build
 
